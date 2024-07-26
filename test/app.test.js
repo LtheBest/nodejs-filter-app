@@ -1,6 +1,5 @@
-import request from 'supertest';
-import app from '../app';
-
+const request = require('supertest');
+const app = require('../app');
 let server;
 
 beforeAll(done => {
