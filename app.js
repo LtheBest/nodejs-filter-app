@@ -1,16 +1,16 @@
-import express from 'express';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
 app.use(express.json());
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const logFilePath = path.join(__dirname, 'app.log');
+const items = [
+    { id: 1, name: 'item1' },
+    { id: 2, name: 'item2' },
+    { id: 3, name: 'item3' }
+];
 
 app.use((req, res, next) => {
     const start = Date.now();
@@ -27,16 +27,10 @@ app.use((req, res, next) => {
             requestBody: req.body,
             queryParams: req.query
         };
-        fs.appendFileSync(logFilePath, JSON.stringify(log) + '\n');
+        fs.appendFileSync(path.join(__dirname, 'app.log'), JSON.stringify(log) + '\n');
     });
     next();
 });
-
-const items = [
-    { id: 1, name: 'item1' },
-    { id: 2, name: 'item2' },
-    { id: 3, name: 'item3' }
-];
 
 app.get('/search', (req, res) => {
     const query = req.query.q;
@@ -49,4 +43,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-export default app;
+module.exports = app;
