@@ -10,8 +10,7 @@ node_modules/
 # Ignorer le dossier logstash-8.14.3
 /logstash-8.14.3
 
-# Ignorer le fichier app.log
-app.log
+
 # Ignorer le fichier *.tar.gz
 *.tar.gz
 # Ignorer le fichier logstash.conf
