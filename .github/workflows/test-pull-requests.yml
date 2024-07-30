@@ -1,11 +1,8 @@
-name: Node.js CI
+name: Node.js CI - Test Pull Requests to Main
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -14,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x] 
+        node-version: [20.x]
 
     steps:
       - name: Checkout repository
